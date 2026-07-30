@@ -1,0 +1,698 @@
+[
+  {
+    "id": "nist-ac2-account-management",
+    "framework": "NIST SP 800-53",
+    "controlId": "AC-2",
+    "controlIdVerified": true,
+    "title": "Account Management",
+    "topic": "Account management",
+    "searchKeywords": [
+      "account provisioning",
+      "onboarding"
+    ],
+    "plainLanguageExplanation": "The organization has a defined process for creating, changing, reviewing, and disabling user accounts, so that only appropriate people have active accounts at any given time.",
+    "controlObjective": "Ensure accounts are established, tracked, and maintained according to documented authorization, and that account activity can be reviewed.",
+    "controlOwner": "IAM Team Lead",
+    "supportingStakeholders": [
+      "HR",
+      "System Owners",
+      "Help Desk"
+    ],
+    "recommendedReviewFrequency": "Quarterly",
+    "evidenceRequested": [
+      {
+        "id": "account-inventory",
+        "label": "Current account inventory report",
+        "qualityCriteria": "Exported within the last 30 days, includes account status and owner"
+      },
+      {
+        "id": "provisioning-approval",
+        "label": "Sample of account creation approvals",
+        "qualityCriteria": "Shows requestor, approver, and business justification"
+      },
+      {
+        "id": "account-management-procedure",
+        "label": "Documented account management procedure",
+        "qualityCriteria": "Current version, reviewed within the last 12 months"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "Evidence is timestamped and covers the audit period",
+      "Approvals are traceable to a named, authorized approver",
+      "Procedure documentation matches what is actually performed"
+    ],
+    "commonEvidenceGaps": [
+      "Account inventory is outdated or manually maintained in a spreadsheet",
+      "No documented approval for some active accounts",
+      "Procedure exists but is not followed consistently"
+    ],
+    "exampleAuditTest": "Select a sample of active accounts and trace each one back to an approved request.",
+    "exampleCompliantCondition": "Every sampled account has a documented, approved request on file.",
+    "exampleAuditFinding": "For 4 of 25 sampled accounts, no approval documentation could be located.",
+    "potentialSecurityRisk": "Unauthorized or unapproved accounts may exist with access that was never formally reviewed.",
+    "potentialBusinessImpact": "Increased risk of unauthorized data access and difficulty demonstrating control ownership during an audit.",
+    "riskSeverity": "Medium",
+    "suggestedRemediation": [
+      "Reconstruct and document approval evidence for accounts missing it",
+      "Implement a standard intake form for all future account requests",
+      "Schedule a recurring account inventory export"
+    ],
+    "suggestedRemediationOwner": "IAM Team Lead",
+    "suggestedTargetCompletionPeriod": "30-45 days",
+    "relatedControlIds": [
+      "nist-ac6-privileged-access",
+      "pci-uar-user-access-reviews",
+      "nist-csf-jml-lifecycle"
+    ],
+    "sourceReference": "NIST SP 800-53 Rev. 5, AC-2 (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with NIST SP 800-53."
+  },
+  {
+    "id": "nist-csf-deprovisioning",
+    "framework": "NIST CSF",
+    "controlId": "PR.AC-1 (concept)",
+    "controlIdVerified": false,
+    "title": "User Deprovisioning (Leaver Process)",
+    "topic": "User deprovisioning",
+    "searchKeywords": [
+      "leaver",
+      "termination",
+      "offboarding"
+    ],
+    "plainLanguageExplanation": "When someone leaves the organization or changes roles, their access should be removed or adjusted promptly so former employees or old roles don't retain unnecessary access.",
+    "controlObjective": "Ensure access is revoked or modified in a timely manner following a termination or role change.",
+    "controlOwner": "IAM Team Lead",
+    "supportingStakeholders": [
+      "HR",
+      "People Managers",
+      "System Owners"
+    ],
+    "recommendedReviewFrequency": "Continuous, with monthly spot checks",
+    "evidenceRequested": [
+      {
+        "id": "termination-list",
+        "label": "HR termination report for the period",
+        "qualityCriteria": "Includes termination date and last day of work"
+      },
+      {
+        "id": "deprovisioning-timestamp",
+        "label": "System logs showing access removal timestamps",
+        "qualityCriteria": "Removal date is on or before the required deadline"
+      },
+      {
+        "id": "exception-log",
+        "label": "Documented exceptions for delayed removals",
+        "qualityCriteria": "Includes business reason and approval"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "HR and IT termination dates reconcile",
+      "Removal timestamps are system-generated, not self-reported",
+      "Exceptions are approved, not just noted after the fact"
+    ],
+    "commonEvidenceGaps": [
+      "No reconciliation between HR terminations and IT deprovisioning",
+      "Access removed late with no documented exception",
+      "Shared or service accounts not covered by the leaver process"
+    ],
+    "exampleAuditTest": "Select a sample of terminated employees and confirm access was removed within the required timeframe.",
+    "exampleCompliantCondition": "All sampled terminations show access removed within 24 hours of the termination date.",
+    "exampleAuditFinding": "3 of 20 sampled terminated users retained active VPN access for 5-9 days after termination.",
+    "potentialSecurityRisk": "Former employees may retain the ability to access systems or data after leaving the organization.",
+    "potentialBusinessImpact": "Potential data exfiltration, regulatory exposure, and reputational harm if a former employee's access is misused.",
+    "riskSeverity": "High",
+    "suggestedRemediation": [
+      "Automate the HR-to-IT termination feed where possible",
+      "Set a hard SLA (e.g., same business day) for access removal",
+      "Add a monthly reconciliation between HR and identity system records"
+    ],
+    "suggestedRemediationOwner": "IAM Team Lead",
+    "suggestedTargetCompletionPeriod": "30 days",
+    "relatedControlIds": [
+      "nist-ac2-account-management",
+      "pci-uar-user-access-reviews",
+      "nist-csf-jml-lifecycle"
+    ],
+    "sourceReference": "General concept aligned to NIST Cybersecurity Framework PR.AC category (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with the NIST CSF."
+  },
+  {
+    "id": "nist-ac6-privileged-access",
+    "framework": "NIST SP 800-53",
+    "controlId": "AC-6",
+    "controlIdVerified": true,
+    "title": "Least Privilege / Privileged Access",
+    "topic": "Privileged access",
+    "searchKeywords": [
+      "PAM",
+      "admin access",
+      "elevated access"
+    ],
+    "plainLanguageExplanation": "People and service accounts should only have the elevated access they truly need to do their job, and that access should be tracked more closely than standard access.",
+    "controlObjective": "Limit privileged access to the minimum necessary and ensure it is monitored and periodically justified.",
+    "controlOwner": "Privileged Access Management (PAM) Owner",
+    "supportingStakeholders": [
+      "System Owners",
+      "Security Operations",
+      "IAM Team"
+    ],
+    "recommendedReviewFrequency": "Quarterly",
+    "evidenceRequested": [
+      {
+        "id": "privileged-account-inventory",
+        "label": "Inventory of privileged/admin accounts",
+        "qualityCriteria": "Includes system, account owner, and business justification"
+      },
+      {
+        "id": "pam-vault-report",
+        "label": "PAM vault checkout/session report",
+        "qualityCriteria": "Shows who checked out privileged credentials and when"
+      },
+      {
+        "id": "privileged-review-signoff",
+        "label": "Manager sign-off on privileged access review",
+        "qualityCriteria": "Signed within the current review cycle"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "Every privileged account has a named human or system owner",
+      "PAM session logs are complete and cannot be edited by the account holder",
+      "Sign-off is from someone with authority over the account, not self-approved"
+    ],
+    "commonEvidenceGaps": [
+      "Standing (always-on) privileged access instead of just-in-time checkout",
+      "No PAM tool in place for some privileged systems",
+      "Reviews performed but not formally signed off"
+    ],
+    "exampleAuditTest": "Confirm that a sample of privileged accounts is enrolled in the PAM solution and reviewed within the last quarter.",
+    "exampleCompliantCondition": "All sampled privileged accounts are vaulted and show a completed quarterly review.",
+    "exampleAuditFinding": "6 of 15 sampled admin accounts had standing access outside the PAM vault with no recent review.",
+    "potentialSecurityRisk": "Excess standing privileged access increases the blast radius of a compromised credential.",
+    "potentialBusinessImpact": "Higher likelihood and severity of a privileged-account-driven security incident.",
+    "riskSeverity": "Critical",
+    "suggestedRemediation": [
+      "Onboard remaining privileged accounts into the PAM solution",
+      "Convert standing access to just-in-time checkout where feasible",
+      "Formalize a quarterly privileged access review with documented sign-off"
+    ],
+    "suggestedRemediationOwner": "Privileged Access Management (PAM) Owner",
+    "suggestedTargetCompletionPeriod": "60 days",
+    "relatedControlIds": [
+      "nist-ac2-account-management",
+      "cis-logging-privileged-monitoring",
+      "cis-service-accounts",
+      "sox-segregation-of-duties"
+    ],
+    "sourceReference": "NIST SP 800-53 Rev. 5, AC-6 (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with NIST SP 800-53."
+  },
+  {
+    "id": "nist-ia2-mfa",
+    "framework": "NIST SP 800-53",
+    "controlId": "IA-2",
+    "controlIdVerified": true,
+    "title": "Multifactor Authentication",
+    "topic": "Multifactor authentication",
+    "searchKeywords": [
+      "MFA",
+      "2FA",
+      "multi-factor",
+      "two-factor"
+    ],
+    "plainLanguageExplanation": "Users must verify their identity with more than just a password (for example, a password plus a phone app code) before accessing sensitive systems.",
+    "controlObjective": "Reduce the risk of unauthorized access from stolen or guessed passwords by requiring an additional identity factor.",
+    "controlOwner": "Identity Platform Owner (e.g., Okta Admin)",
+    "supportingStakeholders": [
+      "Security Operations",
+      "Help Desk",
+      "System Owners"
+    ],
+    "recommendedReviewFrequency": "Quarterly, plus continuous monitoring",
+    "evidenceRequested": [
+      {
+        "id": "mfa-enrollment-report",
+        "label": "MFA enrollment report for in-scope systems",
+        "qualityCriteria": "Shows enrollment percentage and lists any exceptions"
+      },
+      {
+        "id": "mfa-policy",
+        "label": "MFA policy or configuration screenshot",
+        "qualityCriteria": "Shows enforcement is applied, not just available/optional"
+      },
+      {
+        "id": "mfa-exception-approvals",
+        "label": "Approved exceptions for accounts without MFA",
+        "qualityCriteria": "Includes compensating control and approval"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "Report reflects current state, not a point-in-time snapshot from months ago",
+      "Enforcement is technically confirmed, not just policy language",
+      "Every exception has a documented compensating control"
+    ],
+    "commonEvidenceGaps": [
+      "MFA is available but not enforced for all users",
+      "Legacy or service accounts excluded without documented justification",
+      "No compensating control identified for exceptions"
+    ],
+    "exampleAuditTest": "Sample a set of accounts with access to sensitive systems and confirm MFA is enforced at login.",
+    "exampleCompliantCondition": "All sampled accounts are required to complete a second authentication factor.",
+    "exampleAuditFinding": "MFA was not enforced for 2 legacy service accounts with interactive login capability.",
+    "potentialSecurityRisk": "Accounts without MFA are significantly more susceptible to credential-based compromise.",
+    "potentialBusinessImpact": "Increased likelihood of account takeover leading to data breach or fraud.",
+    "riskSeverity": "High",
+    "suggestedRemediation": [
+      "Enforce MFA for all remaining in-scope accounts",
+      "Document compensating controls for any accounts that technically cannot support MFA",
+      "Add MFA enrollment status to new-hire and account-creation checklists"
+    ],
+    "suggestedRemediationOwner": "Identity Platform Owner",
+    "suggestedTargetCompletionPeriod": "30 days",
+    "relatedControlIds": [
+      "nist-ac2-account-management"
+    ],
+    "sourceReference": "NIST SP 800-53 Rev. 5, IA-2 (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with NIST SP 800-53."
+  },
+  {
+    "id": "pci-uar-user-access-reviews",
+    "framework": "PCI DSS",
+    "controlId": "Requirement 7 (concept)",
+    "controlIdVerified": false,
+    "title": "Periodic User Access Reviews",
+    "topic": "User Access Reviews",
+    "searchKeywords": [
+      "UAR",
+      "access certification",
+      "recertification"
+    ],
+    "plainLanguageExplanation": "On a regular schedule, someone who understands what a user should have access to reviews that user's actual access and confirms it's still appropriate.",
+    "controlObjective": "Ensure access remains appropriate over time and inappropriate access is identified and removed.",
+    "controlOwner": "System/Application Owner",
+    "supportingStakeholders": [
+      "People Managers",
+      "IAM Team",
+      "Internal Audit"
+    ],
+    "recommendedReviewFrequency": "Quarterly",
+    "evidenceRequested": [
+      {
+        "id": "access-report",
+        "label": "Access report used for the review",
+        "qualityCriteria": "Generated at or near the review date, covers all in-scope entitlements"
+      },
+      {
+        "id": "manager-certification",
+        "label": "Manager or owner certification of the review",
+        "qualityCriteria": "Signed or system-recorded approval from an authorized reviewer"
+      },
+      {
+        "id": "review-approval",
+        "label": "Formal review sign-off / approval record",
+        "qualityCriteria": "Distinct from the raw access report; shows the review was completed and closed"
+      },
+      {
+        "id": "exception-documentation",
+        "label": "Documentation of any flagged exceptions",
+        "qualityCriteria": "Explains why flagged access was kept or removed"
+      },
+      {
+        "id": "remediation-evidence",
+        "label": "Evidence that inappropriate access was removed",
+        "qualityCriteria": "Ticket or log showing removal date and who performed it"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "The review is recent (within the recommended frequency)",
+      "Certification comes from someone with real knowledge of the user's job duties",
+      "Flagged items are tracked to closure, not just noted"
+    ],
+    "commonEvidenceGaps": [
+      "Review is overdue (older than the required frequency)",
+      "Access report exists but no manager certification is on file",
+      "Flagged/inappropriate access identified but never actually removed"
+    ],
+    "exampleAuditTest": "Confirm the most recent access review was completed within the required frequency and that flagged items were remediated.",
+    "exampleCompliantCondition": "The review was completed on schedule, certified by managers, and all flagged access was removed with evidence.",
+    "exampleAuditFinding": "The quarterly user access review is 9 months overdue. The evidence folder contains only an old access report with no manager certification, review approval, exception documentation, or proof that inappropriate access was removed.",
+    "potentialSecurityRisk": "Users may be carrying excessive or unauthorized access that has never been validated, increasing the risk of misuse.",
+    "potentialBusinessImpact": "Regulatory or contractual non-compliance (e.g., PCI DSS), and potential unauthorized exposure of sensitive data such as cardholder data.",
+    "riskSeverity": "High",
+    "suggestedRemediation": [
+      "Complete a full access review immediately and document manager certification",
+      "Establish exception documentation for any access that will be kept",
+      "Remove or downgrade access identified as inappropriate and log the remediation",
+      "Set a recurring calendar reminder or workflow to prevent future overdue reviews"
+    ],
+    "suggestedRemediationOwner": "System/Application Owner, with IAM Team support",
+    "suggestedTargetCompletionPeriod": "15-30 days",
+    "relatedControlIds": [
+      "nist-ac2-account-management",
+      "nist-csf-deprovisioning"
+    ],
+    "sourceReference": "General concept aligned to PCI DSS access-restriction requirements (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with PCI DSS."
+  },
+  {
+    "id": "cis-logging-privileged-monitoring",
+    "framework": "CIS Controls",
+    "controlId": "CIS Control 8 (concept)",
+    "controlIdVerified": false,
+    "title": "Logging and Monitoring of Privileged Activity",
+    "topic": "Logging and monitoring of privileged activity",
+    "searchKeywords": [
+      "SIEM",
+      "privileged monitoring"
+    ],
+    "plainLanguageExplanation": "Actions taken by privileged/admin accounts should be logged and someone should actually be watching those logs for suspicious activity.",
+    "controlObjective": "Detect misuse or compromise of privileged accounts through timely logging, alerting, and review.",
+    "controlOwner": "Security Operations Center (SOC) Lead",
+    "supportingStakeholders": [
+      "PAM Owner",
+      "IAM Team",
+      "IT Operations"
+    ],
+    "recommendedReviewFrequency": "Continuous monitoring; monthly log review sign-off",
+    "evidenceRequested": [
+      {
+        "id": "siem-coverage-report",
+        "label": "SIEM/log source coverage report for privileged systems",
+        "qualityCriteria": "Confirms in-scope systems are actively sending logs"
+      },
+      {
+        "id": "alert-tuning-doc",
+        "label": "Documented alert rules for privileged activity",
+        "qualityCriteria": "Rules map to specific risky privileged actions"
+      },
+      {
+        "id": "monthly-review-signoff",
+        "label": "Monthly log review sign-off",
+        "qualityCriteria": "Shows a named analyst reviewed and closed the period"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "Log coverage is verified technically, not assumed",
+      "Alerts are tuned to reduce noise while still catching real risk",
+      "Review sign-off happens on schedule, not retroactively bulk-signed"
+    ],
+    "commonEvidenceGaps": [
+      "Privileged systems exist outside SIEM/log collection scope",
+      "Alerts configured but no one is assigned to triage them",
+      "Log review sign-off is missing or done in bulk long after the period"
+    ],
+    "exampleAuditTest": "Confirm a sample of privileged systems are sending logs to the SIEM and that alerts triggered in the period were reviewed.",
+    "exampleCompliantCondition": "All sampled privileged systems are logged and monitored, with documented review of triggered alerts.",
+    "exampleAuditFinding": "2 of 8 privileged systems were not forwarding logs to the SIEM during the review period.",
+    "potentialSecurityRisk": "Malicious or accidental privileged activity could go undetected.",
+    "potentialBusinessImpact": "Delayed detection and response to a security incident involving privileged access.",
+    "riskSeverity": "High",
+    "suggestedRemediation": [
+      "Onboard the missing privileged systems to the SIEM",
+      "Assign clear ownership for triaging privileged-activity alerts",
+      "Institute a monthly sign-off process for log review completion"
+    ],
+    "suggestedRemediationOwner": "Security Operations Center (SOC) Lead",
+    "suggestedTargetCompletionPeriod": "30-45 days",
+    "relatedControlIds": [
+      "nist-ac6-privileged-access"
+    ],
+    "sourceReference": "General concept aligned to CIS Controls v8, Control 8 (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with CIS Controls."
+  },
+  {
+    "id": "sox-segregation-of-duties",
+    "framework": "SOX",
+    "controlId": "Logical Access SoD (concept)",
+    "controlIdVerified": false,
+    "title": "Segregation of Duties",
+    "topic": "Segregation of duties",
+    "searchKeywords": [
+      "SoD",
+      "conflict of interest",
+      "SOX controls"
+    ],
+    "plainLanguageExplanation": "No single person should have conflicting access that lets them both create and approve the same transaction (for example, creating a vendor and also approving payments to that vendor), because that combination creates an opportunity for fraud or error to go undetected.",
+    "controlObjective": "Prevent any one individual from having enough access to complete an entire high-risk process end to end without independent oversight.",
+    "controlOwner": "Application/Process Owner (e.g., ERP System Owner)",
+    "supportingStakeholders": [
+      "Internal Audit",
+      "IAM Team",
+      "Finance/Controllership"
+    ],
+    "recommendedReviewFrequency": "Quarterly, plus at every role or access change",
+    "evidenceRequested": [
+      {
+        "id": "sod-matrix",
+        "label": "Segregation of duties conflict matrix",
+        "qualityCriteria": "Lists defined conflicting access combinations for the in-scope application"
+      },
+      {
+        "id": "sod-violation-report",
+        "label": "SoD violation/exception report",
+        "qualityCriteria": "Generated from actual current access, not a manual list"
+      },
+      {
+        "id": "sod-mitigating-control",
+        "label": "Documented mitigating controls for accepted conflicts",
+        "qualityCriteria": "Explains the compensating control and who approved keeping the conflict"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "The conflict matrix reflects the actual business process, not a generic template",
+      "The violation report is system-generated against current entitlements",
+      "Every accepted conflict has a named compensating control and approver"
+    ],
+    "commonEvidenceGaps": [
+      "No formal SoD matrix exists for the application",
+      "Violations are known informally but never formally reported or tracked",
+      "Mitigating controls are assumed but not documented or tested"
+    ],
+    "exampleAuditTest": "Run the SoD ruleset against current access and confirm every flagged conflict has an approved, documented mitigating control.",
+    "exampleCompliantCondition": "All flagged conflicts have a documented, approved compensating control on file.",
+    "exampleAuditFinding": "One user retained both 'create vendor' and 'approve payment' access in the ERP system with no documented mitigating control.",
+    "potentialSecurityRisk": "A single compromised or malicious account could complete a fraudulent transaction end to end without independent review.",
+    "potentialBusinessImpact": "Financial statement misstatement risk and potential SOX control deficiency finding.",
+    "riskSeverity": "High",
+    "suggestedRemediation": [
+      "Remove or restrict one side of the conflicting access where feasible",
+      "Document a compensating control (e.g., independent transaction review) where access cannot be separated",
+      "Formalize a recurring SoD conflict report as part of the access review cycle"
+    ],
+    "suggestedRemediationOwner": "Application/Process Owner",
+    "suggestedTargetCompletionPeriod": "30-45 days",
+    "relatedControlIds": [
+      "pci-uar-user-access-reviews",
+      "nist-ac6-privileged-access"
+    ],
+    "sourceReference": "General concept aligned to SOX logical-access control expectations (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with the Sarbanes-Oxley Act."
+  },
+  {
+    "id": "cis-service-accounts",
+    "framework": "CIS Controls",
+    "controlId": "CIS Control 5 (concept)",
+    "controlIdVerified": false,
+    "title": "Service Accounts",
+    "topic": "Service accounts",
+    "searchKeywords": [
+      "non-human accounts",
+      "system accounts",
+      "app accounts"
+    ],
+    "plainLanguageExplanation": "Non-human accounts used by applications, scripts, and integrations should have a named human owner, a documented purpose, and credentials that are managed and rotated just like any other privileged access \u2014 not left running forever with a password no one remembers setting.",
+    "controlObjective": "Ensure service accounts are inventoried, owned, and managed to prevent them from becoming an untracked, unmonitored path to sensitive systems.",
+    "controlOwner": "IAM Team Lead, with System Owner co-ownership",
+    "supportingStakeholders": [
+      "Application Owners",
+      "PAM Owner",
+      "Security Operations"
+    ],
+    "recommendedReviewFrequency": "Quarterly",
+    "evidenceRequested": [
+      {
+        "id": "service-account-inventory",
+        "label": "Service account inventory",
+        "qualityCriteria": "Includes named human owner, purpose, and system(s) accessed for every entry"
+      },
+      {
+        "id": "credential-rotation-log",
+        "label": "Credential rotation history",
+        "qualityCriteria": "Shows rotation occurred within the defined policy interval"
+      },
+      {
+        "id": "service-account-vaulting",
+        "label": "Evidence the account is vaulted or centrally managed",
+        "qualityCriteria": "Credential is not stored in plaintext scripts or shared documents"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "Every service account has exactly one named accountable human owner",
+      "Rotation evidence is system-generated, not a manual claim",
+      "No credentials are found hard-coded or stored outside an approved vault"
+    ],
+    "commonEvidenceGaps": [
+      "Service accounts exist with no documented owner (\"orphaned\" accounts)",
+      "Passwords have never been rotated since creation",
+      "Credentials are stored in scripts, spreadsheets, or shared drives instead of a vault"
+    ],
+    "exampleAuditTest": "Select a sample of service accounts and confirm each has a named owner, a documented purpose, and evidence of credential rotation within policy.",
+    "exampleCompliantCondition": "All sampled service accounts have a current owner, documented purpose, and rotation evidence within the required interval.",
+    "exampleAuditFinding": "5 of 12 sampled service accounts had no assigned owner, and 3 had not been rotated in over two years.",
+    "potentialSecurityRisk": "Orphaned or unrotated service account credentials are a common path for long-term, low-visibility compromise.",
+    "potentialBusinessImpact": "Undetected lateral movement or persistent access in the event of a breach, and difficulty responding quickly during an incident because no owner can be identified.",
+    "riskSeverity": "Critical",
+    "suggestedRemediation": [
+      "Complete a full service account discovery and assign an owner to every account",
+      "Migrate credentials into an approved vault/PAM solution",
+      "Establish and enforce a rotation policy with automated reminders",
+      "Decommission accounts with no identifiable business purpose"
+    ],
+    "suggestedRemediationOwner": "IAM Team Lead",
+    "suggestedTargetCompletionPeriod": "45-60 days",
+    "relatedControlIds": [
+      "nist-ac6-privileged-access",
+      "cis-logging-privileged-monitoring",
+      "nist-ia5-password-authentication"
+    ],
+    "sourceReference": "General concept aligned to CIS Controls v8, Control 5 (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with CIS Controls."
+  },
+  {
+    "id": "nist-csf-jml-lifecycle",
+    "framework": "NIST CSF",
+    "controlId": "PR.AC-1 (concept)",
+    "controlIdVerified": false,
+    "title": "Joiner-Mover-Leaver (JML) Lifecycle",
+    "topic": "Joiner-Mover-Leaver lifecycle",
+    "searchKeywords": [
+      "JML",
+      "joiner mover leaver",
+      "role change",
+      "transfer"
+    ],
+    "plainLanguageExplanation": "As people join the organization, change roles, or leave, their access should be granted, adjusted, or removed to match \u2014 with special attention to role changes, since old access often quietly lingers after a transfer or promotion.",
+    "controlObjective": "Ensure access stays aligned with a person's current role throughout their employment lifecycle, not just at hire and termination.",
+    "controlOwner": "IAM Team Lead",
+    "supportingStakeholders": [
+      "HR",
+      "People Managers",
+      "System Owners"
+    ],
+    "recommendedReviewFrequency": "Continuous, with quarterly reconciliation",
+    "evidenceRequested": [
+      {
+        "id": "role-change-report",
+        "label": "HR role/transfer change report for the period",
+        "qualityCriteria": "Includes effective date of the role change and prior/new role"
+      },
+      {
+        "id": "access-adjustment-evidence",
+        "label": "Evidence access was adjusted following the role change",
+        "qualityCriteria": "Shows both new access granted and old access removed, with dates"
+      },
+      {
+        "id": "stale-access-exception",
+        "label": "Documented exception for any retained legacy access",
+        "qualityCriteria": "Includes business justification and approval"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "Role change dates from HR reconcile with access adjustment dates in IT",
+      "Both the grant and the removal side of a transfer are evidenced, not just one",
+      "Retained legacy access has a documented, approved reason"
+    ],
+    "commonEvidenceGaps": [
+      "New access is granted for the new role but old role access is never removed",
+      "No formal trigger connects HR role changes to an access review",
+      "Transfers between departments are not tracked as consistently as terminations"
+    ],
+    "exampleAuditTest": "Select a sample of employees who changed roles in the period and confirm old-role access was removed within the required timeframe.",
+    "exampleCompliantCondition": "All sampled role changes show old access removed and new access granted within the defined SLA.",
+    "exampleAuditFinding": "7 of 15 sampled employees who transferred departments retained one or more access rights from their prior role more than 60 days after the transfer.",
+    "potentialSecurityRisk": "Accumulated legacy access from past roles ('access creep') increases the risk of excessive or inappropriate access going unnoticed.",
+    "potentialBusinessImpact": "Violation of least-privilege expectations and potential exposure of data outside an employee's current job function.",
+    "riskSeverity": "Medium",
+    "suggestedRemediation": [
+      "Establish a formal trigger from HR role-change events to an access adjustment workflow",
+      "Require manager attestation for both the new and prior role's access during a transfer",
+      "Add role-change reconciliation to the quarterly access review process"
+    ],
+    "suggestedRemediationOwner": "IAM Team Lead, with HR partnership",
+    "suggestedTargetCompletionPeriod": "45 days",
+    "relatedControlIds": [
+      "nist-ac2-account-management",
+      "nist-csf-deprovisioning",
+      "pci-uar-user-access-reviews"
+    ],
+    "sourceReference": "General concept aligned to NIST Cybersecurity Framework PR.AC category (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with the NIST CSF."
+  },
+  {
+    "id": "nist-ia5-password-authentication",
+    "framework": "NIST SP 800-53",
+    "controlId": "IA-5",
+    "controlIdVerified": true,
+    "title": "Password and Authentication Management",
+    "topic": "Password and authentication management",
+    "searchKeywords": [
+      "IA-5",
+      "authenticator management",
+      "credential management"
+    ],
+    "plainLanguageExplanation": "Passwords and other authenticators (like tokens or certificates) should meet defined strength and management requirements, and there should be a documented process for how they're issued, changed, and revoked.",
+    "controlObjective": "Ensure authenticators are strong enough and managed well enough to resist compromise throughout their lifecycle.",
+    "controlOwner": "Identity Platform Owner",
+    "supportingStakeholders": [
+      "Security Operations",
+      "Help Desk",
+      "IAM Team"
+    ],
+    "recommendedReviewFrequency": "Annually, plus continuous policy enforcement",
+    "evidenceRequested": [
+      {
+        "id": "password-policy-config",
+        "label": "Password policy configuration export",
+        "qualityCriteria": "Reflects current enforced settings (length, complexity, expiration), not just written policy"
+      },
+      {
+        "id": "authenticator-issuance-record",
+        "label": "Sample of authenticator issuance/reset records",
+        "qualityCriteria": "Shows identity verification occurred before issuance or reset"
+      },
+      {
+        "id": "shared-credential-attestation",
+        "label": "Attestation that no shared or default credentials remain in use",
+        "qualityCriteria": "Covers default vendor passwords and shared logins specifically"
+      }
+    ],
+    "evidenceQualityCriteria": [
+      "Policy export is a live system configuration screenshot or export, not just a written policy document",
+      "Identity verification steps for resets are evidenced, not assumed",
+      "Default and shared credentials are explicitly tested for, not just assumed absent"
+    ],
+    "commonEvidenceGaps": [
+      "Written policy exists but technical enforcement doesn't match it",
+      "Help desk resets don't consistently verify caller identity",
+      "Default vendor passwords remain unchanged on some systems"
+    ],
+    "exampleAuditTest": "Compare the documented password policy to the actual enforced configuration, and test a sample of systems for default or shared credentials.",
+    "exampleCompliantCondition": "Enforced configuration matches documented policy, and no default or shared credentials are found in the sample.",
+    "exampleAuditFinding": "2 of 10 sampled systems were still using vendor-default administrator passwords.",
+    "potentialSecurityRisk": "Weak, default, or shared credentials are one of the most common initial access points in real-world breaches.",
+    "potentialBusinessImpact": "Increased likelihood of unauthorized access and difficulty attributing actions to a specific individual when credentials are shared.",
+    "riskSeverity": "High",
+    "suggestedRemediation": [
+      "Change all identified default vendor credentials immediately",
+      "Align technical policy enforcement with the documented password standard",
+      "Add identity verification steps to the help desk reset procedure"
+    ],
+    "suggestedRemediationOwner": "Identity Platform Owner",
+    "suggestedTargetCompletionPeriod": "15-30 days",
+    "relatedControlIds": [
+      "nist-ia2-mfa",
+      "cis-service-accounts"
+    ],
+    "sourceReference": "NIST SP 800-53 Rev. 5, IA-5 (public reference; summary is original)",
+    "educationalDisclaimer": "This record is for educational audit-readiness practice. It does not certify any organization as compliant with NIST SP 800-53."
+  }
+]
