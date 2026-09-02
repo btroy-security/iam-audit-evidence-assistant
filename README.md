@@ -7,8 +7,8 @@ transparent, rules-based way to self-assess readiness before a real audit,
 and now includes an AI assistant to answer follow-up questions grounded in
 the app's own control data.
 
-> **Status: Phase 1 and Phase 2 complete.** Phase 3 (MCP server) and beyond
-> are next.
+> **Status: All phases complete.** Full-stack app with MCP server ( 7 tools) and Claude-powered AI assistant fully integrated.
+
 
 ## The business problem
 
