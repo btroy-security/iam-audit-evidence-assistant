@@ -27,6 +27,9 @@ const ALLOWED_TOOL_NAMES = new Set([
   "get_evidence_requirements",
   "validate_evidence_status",
   "generate_remediation_guidance",
+  "search_controls",
+  "compare_controls",
+  "list_frameworks",
 ]);
 
 function buildSystemPrompt(control: ControlRecord): string {
@@ -38,7 +41,7 @@ DISPLAY ID: ${control.controlId}
 FRAMEWORK: ${control.framework}
 TITLE: ${control.title}
 
-You have tools available to look up authoritative facts about this control from the application's control library. ALWAYS use "${control.id}" as the controlId argument when calling these tools — never a different control, even if the user asks about something else. If the user asks about a different control by name, explain that you can only discuss the currently selected control in this view.
+You have tools available to look up authoritative facts. You can look up details about the currently selected control, AND you can also search across all controls, compare controls across frameworks, and lists all available frameworks. from the application's control library. ALWAYS use "${control.id}" as the controlId argument when calling these tools — never a different control, even if the user asks about something else. If the user asks about a different control by name, explain that you can only discuss the currently selected control in this view.
 
 RULES YOU MUST FOLLOW:
 1. Base your answers only on data returned by your tools. Do not invent facts, statistics, or official control identifiers.
