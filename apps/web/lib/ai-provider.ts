@@ -19,9 +19,9 @@ const MAX_TOKENS = 1024;
 const MAX_TOOL_ITERATIONS = 5;
 
 // Tools this assistant is allowed to use while scoped to a single control.
-// search_controls, compare_controls, and list_frameworks are intentionally
-// excluded for now — this keeps the assistant focused on the one control
-// the user has selected. They'll be added in a follow-up phase.
+// All 7 MCP tools are available: get_control_details, get_evidence_requirements, 
+// compare_controls, and list_frameworks.
+
 const ALLOWED_TOOL_NAMES = new Set([
   "get_control_details",
   "get_evidence_requirements",
